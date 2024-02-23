@@ -13,11 +13,11 @@ public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-    String title;
-    String author;
-    int publicationYear;
-    int isbn;
-    double price;
+    private String title;
+    private String author;
+    private int publicationYear;
+    private String isbn; 
+    private double price;
 
     @ManyToOne
     @JoinColumn(name = "categoryId")   //FK
@@ -34,9 +34,9 @@ public class Book {
 
     public Book (){}
 
-    // kontruktorit
-    public Book(String title, String author, Integer publicationYear, Integer isbn, double price, Category category) {
-         this.title = title;
+    // constructor
+    public Book(String title, String author, Integer publicationYear, String isbn, double price, Category category) {
+        this.title = title;
         this.author = author;
         this.publicationYear = publicationYear;
         this.isbn = isbn;
@@ -44,7 +44,7 @@ public class Book {
         this.category = category;
     }
 
-    // getterit
+    // getters
     public long getId() {
         return id;
     }
@@ -61,7 +61,7 @@ public class Book {
         return publicationYear;
     }
 
-    public int getIsbn() {
+    public String getIsbn() {
         return isbn;
     }
 
@@ -69,7 +69,7 @@ public class Book {
         return price;
     }
 
-    // setterit
+    // setters
     public void setId(long id) {
         this.id = id;
     }
@@ -86,7 +86,7 @@ public class Book {
         this.publicationYear = publicationYear;
     }
 
-    public void setIsbn(Integer isbn) {
+    public void setIsbn(String isbn) {
         this.isbn = isbn;
     }
 
@@ -99,34 +99,12 @@ public class Book {
     public String toString() {
         if (this.category != null){
             return "Book [id=" + id + ", title=" + title + ", author=" + author + ", publicationYear=" + publicationYear
-            + ", isbn=" + isbn + ", price=" + price + "category =" +this.getCategory() +"]";
+                    + ", isbn=" + isbn + ", price=" + price + "category =" + this.getCategory() +"]";
         }
         else{
             return "Book [id=" + id + ", title=" + title + ", author=" + author + ", publicationYear=" + publicationYear
-                + ", isbn=" + isbn + ", price=" + price + "]";
+                    + ", isbn=" + isbn + ", price=" + price + "]";
         }
-        
+
     }
-
-    
-
-
-    
-
-    
-
-    
-    
-
-    
-   
-
-    
-    
-
-    
-    
-
-    
-    
 }

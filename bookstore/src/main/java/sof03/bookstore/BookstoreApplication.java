@@ -34,9 +34,9 @@ public CommandLineRunner demo(BookRepository bRepository, CategoryRepository cRe
 		Category category3 = new Category("Fantasy");		
 		cRepository.save(category3);
 
-		bRepository.save(new Book("EnsimmäinenKirja", "Matti Mattinen", 2024, 78634, 19.99, category1));
-		bRepository.save(new Book("ToinenKirja", "Matti Partanen", 2000, 111, 11.99, category2));
-		bRepository.save(new Book("KolmasKirja", "John Cena", 2010, 777, 9.90, category3));
+		bRepository.save(new Book("EnsimmäinenKirja", "Matti Mattinen", 2024, "78634", 19.99, category1));
+		bRepository.save(new Book("ToinenKirja", "Matti Partanen", 2000, "111", 11.99, category2));
+		bRepository.save(new Book("KolmasKirja", "John Cena", 2010, "777", 9.90, category3));
 
 
 		
