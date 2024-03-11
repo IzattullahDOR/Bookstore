@@ -32,10 +32,11 @@ public class WebSecurityConfig  {
     public SecurityFilterChain configure(HttpSecurity http) throws Exception {
       http
       .authorizeHttpRequests( authorize -> authorize
-        	.requestMatchers(antMatcher("/css/**")).permitAll() // Enable css when logged out
-        	.anyRequest().authenticated()
+        	.anyRequest()
+            .authenticated()
       )
       .formLogin(formlogin -> formlogin
+        .loginPage("/login")
           .defaultSuccessUrl("/booklist", true)
           .permitAll()
       )

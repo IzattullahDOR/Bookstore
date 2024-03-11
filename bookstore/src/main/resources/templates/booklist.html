@@ -5,48 +5,55 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 <head>    
     <meta http-equiv="content-Type" content="text/html" charset="UTF-8">
     <title>BookList</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-    <div class="container">
-        <h1>Tervetuloa kirjakauppaan</h1>
 
-        <div class="col-md-4">
-            <h3>Welcome <span sec:authentication="name"></span></h3>
-        </div>
+    <div class="container">
         <div class="col-md-4" style="padding:20px 0">
             <form th:action="@{/logout}" method="post">
                 <input type="submit" value="Sign Out" class="btn btn-sm btn-danger"/>
             </form>
         </div>
+        <h1>Tervetuloa kirjakauppaan</h1>
 
+        <div class="row">
+            <div class="col-md-4">
+                <h3>Welcome <span sec:authentication="name"></span></h3>
+            </div>
+            
+        </div>
 
-    <table>
-        <thead>
-            <tr>
-                <th>Title</th>
-                <th>Author</th>
-                <th>Publication Year</th>
-                <th>ISBN</th>
-                <th>Price</th>
-                <th>Category</th>
-            </tr>
-    </thead>
-        <tbody>
-
-            <tr th:each = "book : ${books}">
-                <td th:text = "${book.title}"></td>
-                <td th:text = "${book.author}"></td>
-                <td th:text = "${book.publicationYear}"></td>
-                <td th:text = "${book.isbn}"></td>
-                <td th:text = "${book.price}"></td>
-                <td th:text = "${book.category.name}"></td>
-                <td sec:authorize="hasRole('ADMIN')"><a th:href = "@{/delete/{id}(id=${book.id})}">Delete</a></td>                 
-            </tr>
-        </tbody>
-    </table>
-    <a href="/addbook" class="btn btn-primary" >Add Book</a>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Author</th>
+                    <th>Publication Year</th>
+                    <th>ISBN</th>
+                    <th>Price</th>
+                    <th>Category</th>
+                    <th sec:authorize="hasRole('ADMIN')">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="book : ${books}">
+                    <td th:text="${book.title}"></td>
+                    <td th:text="${book.author}"></td>
+                    <td th:text="${book.publicationYear}"></td>
+                    <td th:text="${book.isbn}"></td>
+                    <td th:text="${book.price}"></td>
+                    <td th:text="${book.category.name}"></td>
+                    <td sec:authorize="hasRole('ADMIN')"><a th:href="@{/delete/{id}(id=${book.id})}" class="btn btn-danger btn-sm">Delete</a></td>
+                </tr>
+            </tbody>
+        </table>
+        <a href="/addbook" class="btn btn-primary">Add Book</a>
 
     </div>
     
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

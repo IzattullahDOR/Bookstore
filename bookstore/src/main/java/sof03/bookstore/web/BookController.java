@@ -57,7 +57,7 @@ public class BookController {
     }
 
     // Login page
-    @GetMapping("/login")
+    @RequestMapping("/login")
     public String login() {
         return "login"; //login.html
     }
